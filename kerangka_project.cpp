@@ -79,7 +79,20 @@ void ringkasan() {
 }
 
 void lihatDaftar() {
-    cout << "fiturnya ntar ditambahin sama emil\n";
+    cout << "\n========== DAFTAR PENGELUARAN ==========\n";
+
+    // ==== PERULANGAN UNTUK MENAMPILKAN DATA ====
+    for (int i = 0; i < jumlahData; i++) {
+        cout << i + 1 << ". " << pengeluaran[i]
+             << " - Rp" << fixed << setprecision(2)
+             << jumlahPengeluaran[i] << endl;
+    }
+
+    if (jumlahData == 0) {
+        cout << "Belum ada data pengeluaran.\n";
+    }
+
+    cout << "========================================\n";
 }
 
 // ================== FUNGSI UTAMA ==================
