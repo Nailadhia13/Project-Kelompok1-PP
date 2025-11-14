@@ -1,39 +1,43 @@
-#include <iostream>
-#include <string>
-#include <iomanip>
-#include <fstream>
+//============================== WELCOME TO OUR PROGRAM, KAK!!===================================
+//============================ BUDGETBUDDY : KODT DAILY TRACKER =================================
+//================================== KELOMPOK 1 : ILKOMP B ======================================
+
+#include <iostream> // untuk input output program
+#include <string> // untuk tipe data string
+#include <iomanip> // untuk format angka desimal
+#include <fstream> // untuk membuat/membaca/menulis file
 using namespace std;
 
 // ================== DEKLARASI DAN INISIALISASIIN DULU VARIABEL GLOBALNYA ==================
-double saldo = 0;
-string pengeluaran[100];
-double jumlahPengeluaran[100];
-int jumlahData = 0;
+double saldo = 0; // kenapa diinisialisasiin dari 0? karena saldo user dimulai dari 0
+string pengeluaran[100]; // pake panjang array 100 ya untuk antisipasi ajasi gamungkin juga kan pengeluaran user sampe 100 wkwk banyak bet buat apa aje coba
+double jumlahPengeluaran[100]; // menyesuaikan banyaknya pengeluaran, misal pengeluarannya buat makan, nah ini input jumlah pengeluarannya
+int jumlahData = 0; // data pengeluaran yang diinputkan oleh user
 
 // ================== FUNCTION BUAT BIKIN FILE BARU SECARA LANGSUNG ==================
-void simpanData() {
-	ofstream file ("keuangan.txt");
+void simpanData() { // kenapa pake void? karena ini fungsi tanpa mengembalikan nilai, sekadar untuk menyimpan data ke file
+	ofstream file ("keuangan.txt"); // membuat file yg namanya "keuangan.txt"
 	
-	if (file.is_open()){
-		file << saldo << endl;
+	if (file.is_open()){ // ngecek apakah file udah berhasil kebuka apa belom
+		file << saldo << endl; // menyimpan saldo ke dalam file di baris pertama
 		//nah abis itu, nantikan user nginput tuh pengeluarannya
 		//nanti otomatis dalam file ini ke list pengeluaran beserta nilai pengeluarannya
-		for ( int i = 0; i < jumlahData; i++) {
-			file << pengeluaran[i] << " = " << jumlahPengeluaran[i] << endl;
+		for ( int i = 0; i < jumlahData; i++) { // untuk nulis semua data pengeluaran satu persatu
+			file << pengeluaran[i] << " = " << jumlahPengeluaran[i] << endl; // format penulisan yang bakal tampil di file
 		}	
 		file.close(); //abis user nginput filenya bakal ketutup
     	cout << "Data berhasil disimpan ke 'keuangan.txt'\n";
-	} else {
+	} else { // kalau is_opennya false maka masuk ke else dan tampilannya bakal begini :
 		cout << "Gagal menyimpan data!\n";
 	}
 }
 // ================== FUNCTION UNTUK MEMUAT DATA DARI FILE ==================
-void muatData() {
-	ifstream file("keuangan.txt");
+void muatData() { //baca data dari file ke memory program
+	ifstream file("keuangan.txt"); //ifstream buat apa hayo? yaa betul, buat buka file keuangan.txt yg dh kita buat
 	
-	if(file.is_open()) {
-		file >> saldo;
-		file.ignore();
+	if(file.is_open()) { // kalau file berhasil dibuka
+		file >> saldo; // ini akan ngebaca data di file dari barisan pertama
+		file.ignore(); //lewati sisa newline biar pembacaan baris berikutnya dengan getline ga bermasalah
 		
 		string line;
 		jumlahData = 0;
