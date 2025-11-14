@@ -70,8 +70,26 @@ void tambahPemasukan() {
     cout << "fiturnya ntar ditambahin sama rayen\n";
 }
 
+// ================== FUNCTION CATAT PENGELUARAN ==================
 void catatPengeluaran() {
-    cout << "fiturnya ntar ditambahin sama bita\n";
+    double jumlah;
+	string tujuan;
+	cout << "Masukkan jumlah uang pengeluaran: Rp ";
+	cin >> jumlah;
+	cin.ignore();
+	cout << "Untuk apa uangnya dipakai (misal: makan, pulsa, laundry)? ";
+	getline(cin, tujuan);
+
+	// ==== PERCABANGAN: cek saldonya dah cukup pa blom ====
+	if(jumlah > saldo){
+		cout << "? Saldo tidak cukup untuk pengeluaran ini!\n";
+	} else {
+		saldo -= jumlah;
+		pengeluaran[jumlahData] = tujuan;
+		jumlahPengeluaran[jumlahData] = jumlah;
+		jumlahData++;
+		cout << "? Pengeluaran Rp" << jumlah << " untuk  '" << tujuan << "' telah dicatat.\n";
+	}
 }
 
 void ringkasan() {
