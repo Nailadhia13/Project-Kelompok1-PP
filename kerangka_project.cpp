@@ -92,10 +92,20 @@ void catatPengeluaran() {
 	}
 }
 
+// ================== FUNCTION RINGKASAN KEUANGAN ==================
 void ringkasan() {
-    cout << "fiturnya ntar ditambahin sama sehen\n";
-}
+    cout << "\n========== RINGKASAN KEUANGAN ==========\n";
+    cout << "Saldo saat ini : Rp" << fixed << setprecision(2) << saldo << endl;
 
+    double total = 0;
+    for (int i = 0; i < jumlahData; i++) {
+        total += jumlahPengeluaran[i]; 
+    }
+
+    cout << "Total pengeluaran : Rp" << total << endl;
+    cout << "Jumlah transaksi  : " << jumlahData << " kali\n";
+    cout << "========================================\n";
+}
 void lihatDaftar() {
     cout << "\n========== DAFTAR PENGELUARAN ==========\n";
 
