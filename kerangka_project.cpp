@@ -70,8 +70,13 @@ void tampilkanMenu() {
     cout << "Pilih dulu dong menunya (1-5): ";
 }
 
+// FUNCTUION TAMBAH PEMNASUKAN
 void tambahPemasukan() {
-    cout << "fiturnya ntar ditambahin sama rayen\n";
+double jumlah;
+cout << "Masukkan jumlah pemasukan : Rp ";
+cin >> jumlah;
+saldo += jumlah;
+cout << "? Pemasukan sebesar Rp" << fixed << setprecision(2) << jumlah << "Berhasil ditambahkan" << endl; 
 }
 
 // ================== FUNCTION CATAT PENGELUARAN ==================
@@ -96,10 +101,20 @@ void catatPengeluaran() {
 	}
 }
 
+// ================== FUNCTION RINGKASAN KEUANGAN ==================
 void ringkasan() {
-    cout << "fiturnya ntar ditambahin sama sehen\n";
-}
+    cout << "\n========== RINGKASAN KEUANGAN ==========\n";
+    cout << "Saldo saat ini : Rp" << fixed << setprecision(2) << saldo << endl;
 
+    double total = 0;
+    for (int i = 0; i < jumlahData; i++) {
+        total += jumlahPengeluaran[i]; 
+    }
+
+    cout << "Total pengeluaran : Rp" << total << endl;
+    cout << "Jumlah transaksi  : " << jumlahData << " kali\n";
+    cout << "========================================\n";
+}
 void lihatDaftar() {
     cout << "\n========== DAFTAR PENGELUARAN ==========\n";
 
