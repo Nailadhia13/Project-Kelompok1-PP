@@ -70,6 +70,15 @@ void tambahPemasukan() {
     cout << "fiturnya ntar ditambahin sama rayen\n";
 }
 
+// FUNCTUION TAMBAH PEMNASUKAN
+void tambahPemasukan() {
+double jumlah;
+cout << "Masukkan jumlah pemasukan : Rp ";
+cin >> jumlah;
+saldo += jumlah;
+cout << "? Pemasukan sebesar Rp" << fixed << setprecision(2) << jumlah << "Berhasil ditambahkan" << endl; 
+}
+
 // ================== FUNCTION CATAT PENGELUARAN ==================
 void catatPengeluaran() {
     double jumlah;
