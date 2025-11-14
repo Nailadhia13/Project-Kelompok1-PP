@@ -66,10 +66,6 @@ void tampilkanMenu() {
     cout << "Pilih dulu dong menunya (1-5): ";
 }
 
-void tambahPemasukan() {
-    cout << "fiturnya ntar ditambahin sama rayen\n";
-}
-
 // FUNCTUION TAMBAH PEMNASUKAN
 void tambahPemasukan() {
 double jumlah;
