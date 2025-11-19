@@ -40,7 +40,7 @@ void muatData() { // fungsi untuk baca data dari file ke memori program
 		
 		//========== pake looping biar data pengeluaran kebaca ==============
 		while (getline(file, line)) {
-			size_t pos = line.find (",");
+			size_t pos = line.find ("=");
 			if (pos != string::npos) {
 				pengeluaran [jumlahData] = line.substr (0, pos);
 				jumlahPengeluaran[jumlahData] = stod(line.substr(pos + 1));
