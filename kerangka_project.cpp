@@ -1,6 +1,6 @@
 #include <iostream> // untuk input output
 #include <string> // untuk pakai tipe data string
-#include <iomanip> // untuk format angka desimal
+#include <iomanip> // untuk format angka desimal untuk mengatur jumlah angka di belakang koma
 #include <fstream> // untuk baca dan nulis file
 using namespace std;
 
@@ -11,6 +11,7 @@ double jumlahPengeluaran[100]; // untuk nyimpen harga atau jumlah dari pengeluar
 int jumlahData = 0; // untuk nyimpen ada berapa data pengeluaran yang udah tercatat, makanya dimukai dari 0
 
 // ================== FUNCTION BUAT BIKIN FILE BARU SECARA LANGSUNG ==================
+//menyimpan data dari program ke file
 void simpanData() { // fungsi tanpa mengembalikan nilai, cuma untuk menyimpan data ke file
 	ofstream file ("keuangan.txt"); // buka atau buat file untuk nyimpen data pengeluaran, whiich is nama filenya "keuangan.txt"
 	
@@ -28,6 +29,7 @@ void simpanData() { // fungsi tanpa mengembalikan nilai, cuma untuk menyimpan da
 	}
 }
 // ================== FUNCTION UNTUK MEMUAT DATA DARI FILE ==================
+//membaca kembali data lama saat program dibuka kembali
 void muatData() { // fungsi untuk baca data dari file ke memori program
 	ifstream file("keuangan.txt"); // buka dulu dong filenya biar kebaca
 	
@@ -35,15 +37,16 @@ void muatData() { // fungsi untuk baca data dari file ke memori program
 		file >> saldo; // baca salo dari baris pertama
 		file.ignore(); // ngelewati newline biar pembacaaan baris berikutnya dengan getline ga bermasalah
 		
-		string line;
-		jumlahData = 0;
+		string line; //menyimpan satu baris teks yang dibaca dari file
+		jumlahData = 0; //data dari file dimulai dari 0
 		
 		//========== pake looping biar data pengeluaran kebaca ==============
-		while (getline(file, line)) {
-			size_t pos = line.find ("=");
-			if (pos != string::npos) {
-				pengeluaran [jumlahData] = line.substr (0, pos);
-				jumlahPengeluaran[jumlahData] = stod(line.substr(pos + 1));
+		while (getline(file, line)) { //baca baris pertama sampai habis, getline baca satu baris sampe /n
+			size_t pos = line.find ("="); // cari posisi karakter "=" dalam suatu baris
+			if (pos != string::npos) { //jika format "=" ditemukan berarti format baris sesuai harapan
+				pengeluaran [jumlahData] = line.substr (0, pos); //ngambil substring  dari awal sampai sebelum koma 
+				jumlahPengeluaran[jumlahData] = stod(line.substr(pos + 1)); //ngambil substring  dari after koma sampai akhir (angka) 
+				//lalu angka tersebut diubah jadi bentuk double atau desimal, makanya ada stod (string to double)
 				jumlahData++;
 			}
 		}
@@ -64,15 +67,18 @@ void tampilkanMenu() {
     cout << "5. Simpan dan Keluar\n";
     cout << "==================================================\n";
     cout << "Hai anak maniez, silahkan mau pilih yang mana? (1-5): ";
+	//user diminta menginputkan fitur yang ingin digunakan
 }
 
-// ================= FUNCTUION TAMBAH PEMNASUKAN =================
+// ================= FUNCTION TAMBAH PEMASUKAN =================
 void tambahPemasukan() {
 double jumlah;
 cout << "Ciee mau nabung, mau nabung berapa nich : Rp ";
 cin >> jumlah;
 saldo += jumlah;
-cout << "Pemasukan sebesar Rp" << fixed << setprecision(2) << jumlah << " Berhasil ditambahkan!!! OTW JADI SULTAN NIH" << endl; 
+cout << "Pemasukan sebesar Rp"
+	 << fixed << setprecision(2)
+	 << jumlah << " Berhasil ditambahkan!!! OTW JADI SULTAN NIH" << endl; 
 }
 
 // ================== FUNCTION CATAT PENGELUARAN ==================
@@ -101,7 +107,6 @@ void catatPengeluaran() {
 void ringkasan() {
     cout << "\n========== RINGKASAN KEUANGAN ==========\n";
     cout << "Saldo saat ini : Rp" << fixed << setprecision(2) << saldo << endl;
-	cout << "Bentar lagi jadi sultan wkwk" << endl; 
 	
     double total = 0;
     for (int i = 0; i < jumlahData; i++) {
@@ -132,16 +137,16 @@ void lihatDaftar() {
 }
 
 // ================== FUNGSI UTAMA ===============================
-int main() {
-    muatData(); 
-    int pilihan;
+int main() { // otak besar jalannya program ini
+    muatData(); // muat data lama untuk dieksekusi
+    int pilihan; //variabel untuk nyimpen pilihan dari user
 
-    do {
-        tampilkanMenu();
-        cin >> pilihan;
+    do { // program paling tidak menjalankan 1 fitur sekali
+        tampilkanMenu(); //memanggil fungsi yang nampilin menu ke layar dan program bakal nunggu user milih
+        cin >> pilihan; //user milih menu
 
         switch (pilihan) {
-            case 1: tambahPemasukan(); 
+            case 1: tambahPemasukan(); //kalau user pilih ini, maka jalankan fungsi tersebut
 				break;
             case 2: catatPengeluaran(); 
 				break;
@@ -153,10 +158,10 @@ int main() {
                 simpanData();
                 cout << "\nHOLAA!! Makasii yaa sudah mau pakai program ini!! semoga harimu senin terus:) \n";
                 break;
-            default:
+            default: //ini kalau usernya ngawur misalnya disuruhnya nginput pilihan 1-5 dia malah nginput 7
                 cout << "Pilihan tidak valid! Coba lagi.\n";
         }
-    } while (pilihan != 5);
+    } while (pilihan != 5); //selama user ga milih 5 maka case di atas akan terus berulang
 
     return 0;
 }
