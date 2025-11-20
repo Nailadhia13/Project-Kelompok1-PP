@@ -1,11 +1,11 @@
 # Project-Kelompok1-PP
 This is a simple project from Us, hopefully it can help you calculate your expenses:)
 
-Nailadhia Martafani << endl;
-M. Emil Ghufron << endl;
-Nailah Tsabitah E << endl;
-Rian Saputra << endl;
-Sehen Rishi << endl;
+Nailadhia Martafani <<
+M. Emil Ghufron <<
+Nailah Tsabitah E <<
+Rian Saputra <<
+Sehen Rishi <<
 
 * Studi kasus
   Di era modern saat ini, banyak sekali anak kost yang kesulitan mengatur keuangan harian mereka. Tanpa pencatatan yang jelas, sering kali uang bulanan cepat habis tanpa tahu ke mana saja digunakan. Maka dari itu, program ini kami buat agar dapat mempermudah setiap anak kost dalam mencatat pemasukan, pengeluaran, serta memahami kondisi keuangan hariannya. Dengan adanya program ini, diharapkan pengguna dapat lebih bijak dalam mengelola uang sehingga kebutuhan bulanan dapat terpenuhi dengan baik.
